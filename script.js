@@ -1,5 +1,13 @@
 'use strict'
 
+function colourGenerator() {
+  let red = Math.floor(Math.random()*255);
+  let green = Math.floor(Math.random()*255);
+  let blue = Math.floor(Math.random()*255);
+  
+  return `rgb(${red},${green},${blue})`;
+}
+
 const labels = [
   'January',
   'February',
@@ -9,15 +17,11 @@ const labels = [
   'June',
 ];
 
-function colourGenerator() {
-  let red = Math.floor(Math.random()*255);
-  let green = Math.floor(Math.random()*255);
-  let blue = Math.floor(Math.random()*255);
-  
-  return `rgb(${red},${green},${blue})`;
-}
+let colors = [];
 
-console.log(colourGenerator());
+for (let i = 0; i < labels.length; i++) {
+  colors.push((colourGenerator()));
+}
 
 const chartTypes = [
   "area",
@@ -36,7 +40,7 @@ const data = {
   datasets: [
     {
       label: "My Chart",
-      backgroundColor: ['rgb(25, 99, 132)', 'rgb(255, 9, 132)', 'rgb(255, 99, 13)', 'rgb(255, 99, 132)','rgb(55, 199, 232)','rgb(155, 99, 123)'],
+      backgroundColor: colors,
       borderColor: "rgb(255, 99, 132)",
       data: [15, 10, 5, 2, 20, 30, 45],
     },
