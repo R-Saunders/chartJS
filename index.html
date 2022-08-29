@@ -7,7 +7,18 @@
 	</head>
 	<body>
 		<div>
-			<h1>Hello Chart</h1>
+			<h1>Hello World</h1>
+			<select name="chart-type" id="chart-type">
+				<option value="bar">Bar</option>
+				<option value="bubble">Bubble</option>
+				<option value="doughnut">Doughnut</option>
+				<option value="pie">Pie</option>
+				<option value="line">Line</option>
+				<option value="polarArea">Polar Area</option>
+				<option value="radar">Radar</option>
+				<option value="scatter">Scatter</option>
+			</select>
+			<button onclick="clicked()">Select</button>
 			<canvas id="myChart"></canvas>
 		</div>
 		<script src="script.js"></script>

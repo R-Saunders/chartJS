@@ -32,13 +32,27 @@ const data = {
   }]
 };
 
+let typz = 'line';
+
 const config = {
-  type: 'bar',
+  type: typz,
   data: data,
   options: {}
 };
+
+const clicked = () => {
+  let chartType = document.getElementById("chart-type").value;
+  typz = chartType;
+  config.type = `${typz}`;
+  console.log(typz);
+  let grapharea = document.getElementById("myChart").getContext("2d");
+  let myChart = new Chart(grapharea, {type: typz, data: data, option: {}});
+  myChart.destroy();
+  myChart = new Chart(grapharea, { type: typz, data:data,options:{}})
+}
 
 const myChart = new Chart(
   document.getElementById('myChart'),
   config
 );
+
