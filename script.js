@@ -56,6 +56,15 @@ function submitted(event) {
   let monthValue = event.target.month_value.value;
   labels.push(month);
   values.push(parseInt(monthValue));
+
+  let monthString = JSON.stringify(labels);
+  let monthValueString = JSON.stringify(values);
+
+  localStorage.setItem('mstring',monthString);
+  localStorage.setItem('mvString',monthValueString);
+  let monthUnstring = JSON.parse(localStorage.getItem('mstring'));
+  let monthValueUnstring = JSON.parse(localStorage.getItem('mvstring'));
+
   document.getElementById("myForm").reset();
   localStorage.setItem(month, monthValue);
   clicked();
