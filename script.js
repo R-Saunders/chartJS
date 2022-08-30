@@ -1,5 +1,19 @@
 'use strict'
 
+let labels = [];
+
+let values = [];
+
+let myChart;
+
+const clicked = () => {
+
+  let chartType = document.getElementById("chart-type").value;
+
+  if(myChart){
+    myChart.destroy();
+  }
+
 function getColors() {
   let red = Math.floor(Math.random()*255);
   let green = Math.floor(Math.random()*255);
@@ -9,50 +23,38 @@ function getColors() {
 
 let colors = [];
 
-const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-];
-
 for (let i = 0; i < labels.length; i++) {
   colors.push(getColors());
 }
 
-const data = {
+let data = {
   labels: labels,
   datasets: [{
     label: 'My First dataset',
     backgroundColor: colors,
     borderColor: 'rgb(255, 99, 132)',
-    data: [35, 10, 5, 2, 20, 30, 45],
+    data: values,
   }]
 };
 
 let typz = 'line';
 
 const config = {
-  type: typz,
+  type: chartType,
   data: data,
   options: {}
 };
-
-const clicked = () => {
-  let chartType = document.getElementById("chart-type").value;
+ 
   typz = chartType;
-  config.type = `${typz}`;
-  console.log(typz);
-  let grapharea = document.getElementById("myChart").getContext("2d");
-  let myChart = new Chart(grapharea, {type: typz, data: data, option: {}});
-  myChart.destroy();
-  myChart = new Chart(grapharea, { type: typz, data:data,options:{}})
+  
+  myChart = new Chart(document.getElementById('myChart'),config);
 }
 
-const myChart = new Chart(
-  document.getElementById('myChart'),
-  config
-);
-
+function submitted(event) {
+  event.preventDefault();
+  let month = event.target.month.value;
+  let monthValue = event.target.month_value.value;
+  labels.push(month);
+  values.push(parseInt(monthValue));
+  document.getElementById("myForm").reset();
+}
