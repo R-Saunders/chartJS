@@ -57,4 +57,6 @@ function submitted(event) {
   labels.push(month);
   values.push(parseInt(monthValue));
   document.getElementById("myForm").reset();
+  localStorage.setItem(month, monthValue);
+  clicked();
 }
